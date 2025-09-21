@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/* General Page Layout */
+.page-container {
+  @apply flex min-h-screen max-w-7xl flex-col;
+}
+
+.main-content {
+  @apply flex-grow overflow-y-auto p-10;
+}
+
+/* Form Container & Typography */
+.form-wrapper {
+  @apply rounded-lg px-8;
+}
+
+.form-title {
+  @apply mb-4 text-4xl font-bold;
+}
+
+.form-subtitle {
+  @apply mb-6 text-gray-500;
+}
+
+/* Form Structure & Fields */
+.form-row {
+  @apply flex w-full flex-col gap-4 md:flex-row;
+}
+
+.form-group {
+  @apply flex w-full flex-col space-y-2;
+}
+
+.form-label {
+  @apply font-medium text-gray-700;
+}
+
+.form-input {
+  @apply w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2;
+}
+
+.form-textarea {
+  @apply h-32 w-full rounded-lg border border-gray-300 p-3 focus:outline-none;
+}
+
+/* Buttons & Feedback Messages */
+.submit-btn {
+  @apply flex cursor-pointer items-center gap-2 rounded bg-gray-200 px-4 py-2 hover:bg-gray-300;
+}
+
+.message-success {
+  @apply mt-4 text-center font-medium text-green-600;
+}
+
+/* Specific Component Overrides */
+#my-tinymce-editor {
+  @apply h-72;
+}

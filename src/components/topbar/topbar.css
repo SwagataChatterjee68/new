@@ -1,0 +1,45 @@
+@import "tailwindcss";
+.topbar {
+  @apply w-full flex justify-end items-center fixed px-6 py-4 bg-gray-100 text-white shadow;
+}
+
+.btn-primary {
+  @apply bg-[#ff9100] flex items-center gap-2 text-xl  px-4 py-2 rounded-lg hover:bg-orange-400 transition;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white px-4  flex items-center gap-2 text-xl  py-2 rounded-lg hover:bg-red-700 transition;
+}
+
+.btn-secondary {
+  @apply bg-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400 transition;
+}
+
+/* Dark overlay covering everything */
+.modal-backdrop {
+  @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50;
+}
+
+.modal {
+  @apply bg-white rounded-xl shadow-lg p-6 w-full max-w-md;
+}
+
+.modal-title {
+  @apply text-xl font-semibold mb-4 text-center;
+}
+
+.modal-form {
+  @apply flex flex-col gap-4;
+}
+
+.form-group {
+  @apply flex flex-col;
+}
+
+.form-label {
+  @apply text-sm font-medium mb-1;
+}
+
+.form-input {
+  @apply border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}

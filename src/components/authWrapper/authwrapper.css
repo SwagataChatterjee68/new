@@ -1,0 +1,16 @@
+/* app/_components/AuthWrapper.css */
+.loading-container {
+  @apply flex justify-center items-center h-screen;
+}
+
+/* Loading text */
+.loading-text {
+  @apply text-lg leading-7;
+}
+/* .dashboard-layout {
+  @apply grid lg:grid-cols-[20%_80%] ;
+} */
+
+/* .main-content-area {
+  @apply p-4 sm:p-6 lg:p-8;
+} */

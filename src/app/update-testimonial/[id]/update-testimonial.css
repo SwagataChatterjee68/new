@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/* Container */
+.container {
+  @apply max-w-3xl mx-auto p-6 py-32;
+}
+
+.page-title {
+  @apply text-2xl font-bold mb-6;
+}
+
+/* Form */
+.form-wrapper {
+  @apply bg-white shadow rounded-lg p-6 space-y-4;
+}
+
+.form-group {
+  @apply flex flex-col;
+}
+
+.form-label {
+  @apply mb-1 font-medium text-gray-700;
+}
+
+.form-input {
+  @apply border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.preview-video {
+  @apply w-full h-48 object-cover rounded mb-4;
+}
+
+.submit-btn {
+  @apply bg-blue-500 text-white cursor-pointer px-4 py-2 rounded hover:bg-blue-600;
+}

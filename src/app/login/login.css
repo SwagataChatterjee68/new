@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* Note on the Background:
+  The background in your image has a specific wavy pattern. A perfect replica would
+  use a background-image (like an SVG). This CSS uses a soft radial gradient
+  that captures the feel and color scheme of the design.
+*/
+.login-page-container {
+  @apply min-h-screen flex items-center justify-center p-4 sm:p-6;
+  
+}
+
+.login-card-wrapper {
+  @apply w-full max-w-sm bg-white p-8 sm:p-10 rounded-2xl shadow-xl;
+}
+
+.login-heading {
+  @apply text-3xl font-bold text-gray-900 mb-1;
+}
+
+.login-subheading {
+  @apply text-base text-gray-500 mb-8;
+}
+
+.login-form {
+  @apply flex flex-col;
+}
+
+.form-group-custom {
+  @apply mb-4;
+}
+
+.login-input {
+  @apply w-full border border-gray-300 rounded-lg p-3 text-base text-gray-800 
+         transition-colors duration-200 disabled:bg-gray-100;
+  
+  @apply focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-400;
+}
+
+.login-input::placeholder {
+  @apply text-gray-400;
+}
+
+.forgot-password-link {
+  @apply text-sm text-blue-600 hover:underline cursor-pointer text-right mb-5;
+}
+
+.error-message {
+  @apply text-red-600 text-sm font-medium text-center mb-4;
+}
+
+.continue-button {
+  @apply w-full bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-md 
+         transition-colors duration-200 hover:bg-blue-700;
+  
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+  @apply disabled:opacity-60 disabled:cursor-not-allowed;
+}
+
+.register-link-text {
+  @apply text-sm text-gray-600 text-center mt-8;
+}
+
+.register-link {
+  @apply text-blue-600 font-semibold hover:underline;
+}

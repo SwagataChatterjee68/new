@@ -1,0 +1,28 @@
+{
+  "name": "northwayglobal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@tinymce/tinymce-react": "^6.3.0",
+    "dotenv": "^17.2.2",
+    "json-server": "^1.0.0-beta.3",
+    "next": "^15.5.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.5.0",
+    "sonner": "^2.0.7"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@tailwindcss/postcss": "^4.1.13",
+    "eslint": "^9.35.0",
+    "eslint-config-next": "^15.5.3",
+    "tailwindcss": "^4.1.13"
+  }
+}

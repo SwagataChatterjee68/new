@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/* Backdrop */
+.modal-backdrop {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
+}
+
+/* Modal box */
+.modal {
+  @apply bg-white rounded-lg shadow-lg p-6 max-w-md w-full;
+}
+
+/* Title */
+.modal-title {
+  @apply text-lg font-semibold mb-4 text-center;
+}
+
+/* Buttons */
+.btn-primary {
+  @apply bg-blue-600 text-white cursor-pointer px-4 py-2 rounded-md transition-colors duration-200;
+}
+.btn-primary:hover {
+  @apply bg-blue-700;
+}
+
+.btn-secondary {
+  @apply bg-gray-300 text-gray-800 cursor-pointer px-4 py-2 rounded-md transition-colors duration-200;
+}
+.btn-secondary:hover {
+  @apply bg-gray-400;
+}
