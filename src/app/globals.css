@@ -10,7 +10,7 @@
   @apply mb-10;
 }
 .section-title {
-  @apply text-xl font-semibold text-gray-700 mb-4;
+  @apply text-3xl font-bold text-gray-700 mb-4;
 }
 
 /* Grid layout */

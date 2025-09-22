@@ -1,26 +1,24 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { toast } from 'sonner'
-import './manage-video.css'
 import Topbar from '@/components/topbar/Topbar'
-import { FaVideo,FaPaperPlane } from "react-icons/fa6";
+import { FaVideo, FaPaperPlane } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
+import './manage-video.css'
 
-export default function ManageVideos () {
+export default function ManageVideos() {
   const [videos, setVideos] = useState([])
   const [title, setTitle] = useState('')
   const [videoUrl, setVideoUrl] = useState('')
   const [isHydrated, setIsHydrated] = useState(false)
 
-  // Handle hydration
-  useEffect(() => {
-    setIsHydrated(true)
-  }, [])
+  // Hydration
+  useEffect(() => setIsHydrated(true), [])
 
   // Fetch videos
   useEffect(() => {
     if (!isHydrated) return
-    
+
     fetch('https://nortway.mrshakil.com/api/gallery/video/')
       .then(res => res.json())
       .then(data => setVideos(data))
@@ -34,21 +32,22 @@ export default function ManageVideos () {
     }
 
     try {
-      const res = await fetch(
-        'https://nortway.mrshakil.com/api/gallery/video/',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ title, videoUrl })
-        }
-      )
+      const token = localStorage.getItem('token')
+      const res = await fetch('https://nortway.mrshakil.com/api/gallery/video/', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Token ${token}` } : {})
+        },
+        body: JSON.stringify({ title, video_url: videoUrl })
+      })
 
       if (!res.ok) throw new Error('Upload failed')
 
       const savedVideo = await res.json()
       setVideos(prev => [...prev, savedVideo])
 
-      // reset form
+      // Reset form
       setTitle('')
       setVideoUrl('')
       toast.success('Video uploaded successfully!')
@@ -60,18 +59,22 @@ export default function ManageVideos () {
 
   const handleDelete = async id => {
     try {
-      await fetch(`https://nortway.mrshakil.com/api/gallery/video/${id}/`, {
-        method: 'DELETE'
+      const token = localStorage.getItem('token')
+      const res = await fetch(`https://nortway.mrshakil.com/api/gallery/video/${id}/`, {
+        method: 'DELETE',
+        headers: token ? { Authorization: `Token ${token}` } : {}
       })
-      setVideos(videos.filter(v => v.id !== id))
+
+      if (!res.ok) throw new Error('Delete failed')
+
+      setVideos(prev => prev.filter(v => v.id !== id))
       toast.success('Video deleted!')
     } catch (err) {
       console.error(err)
       toast.error('Error deleting video')
     }
   }
-  console.log(videos)
-  // Show loading state until hydrated
+
   if (!isHydrated) {
     return (
       <div className='flex justify-center items-center min-h-[400px]'>
@@ -117,13 +120,14 @@ export default function ManageVideos () {
             <FaPaperPlane /> Upload
           </button>
         </div>
+
         {/* List */}
         {videos.length > 0 && (
           <div className='videos-grid'>
             {videos.map(video => (
               <div key={video.id} className='video-item'>
                 <video
-                  src={video.videoUrl}
+                  src={video.video_url}
                   controls
                   className='video-preview'
                 />
