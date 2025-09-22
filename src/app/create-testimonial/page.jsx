@@ -268,7 +268,7 @@ export default function CreateTestimonial() {
             className="submit-btn"
             disabled={isLoading}
           >
-            <FaPaperPlane /> {isLoading ? "Submitting..." : "Submit"}
+            <FaPaperPlane className='inline-block' /> {isLoading ? "Submitting..." : "Submit"}
           </button>
         </form>
 

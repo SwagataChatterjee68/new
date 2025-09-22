@@ -56,7 +56,7 @@
   @apply flex items-center gap-1 text-white bg-[#ff9100] px-3 py-1 rounded text-sm cursor-pointer transition-colors duration-200;
 }
 .btn-update:hover {
-  @apply bg-orange-600;
+  @apply bg-orange-400;
 }
 
 /* Delete Button */

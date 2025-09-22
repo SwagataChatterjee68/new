@@ -9,7 +9,7 @@
 
 /* Form */
 .form-wrapper {
-  @apply flex flex-col gap-4 mb-6 bg-white p-4 rounded-md;
+  @apply flex flex-col gap-4 mb-6 p-4 rounded-md;
 }
 
 .form-label {
@@ -26,7 +26,7 @@
 }
 
 .video-item {
-  @apply relative bg-white shadow-md rounded-md overflow-hidden;
+  @apply relative  shadow-md rounded-md overflow-hidden;
 }
 
 .video-preview {

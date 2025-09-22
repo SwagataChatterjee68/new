@@ -117,7 +117,7 @@ export default function ManageVideos() {
           </label>
 
           <button onClick={handleUpload} className='submit-btn'>
-            <FaPaperPlane /> Upload
+            <FaPaperPlane className='inline-block' /> Upload
           </button>
         </div>
 

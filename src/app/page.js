@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from "react";
-import { IoHomeOutline } from "react-icons/io5";
 import { Toaster, toast } from "sonner";
 import Topbar from "@/components/topbar/Topbar";
 import Link from "next/link";
@@ -57,20 +56,35 @@ export default function HomePage() {
 
       <div className="container">
         {/* Testimonials */}
+        {/* Testimonials */}
         <section className="section">
           <h2 className="section-title">Latest Testimonials</h2>
           <div className="grid">
-            {testimonials.map((t) => (
-              <div key={t.id} className="card">
-                <p className="card-title">{t.name}</p>
-                <p className="card-subtitle">{t.designation}</p>
-                {t.video?.url && (
-                  <video controls className="video">
-                    <source src={t.video.url} type="video/mp4" />
-                  </video>
-                )}
-              </div>
-            ))}
+            {testimonials.map((t) => {
+              // Determine the correct video URL
+              const videoSrc = t.video?.url
+                ? t.video.url
+                : t.video_url?.startsWith('http')
+                  ? t.video_url
+                  : t.video_url
+                    ? `https://nortway.mrshakil.com${t.video_url}`
+                    : null;
+
+              return (
+                <div key={t.id} className="card">
+                  <p className="card-title">{t.name}</p>
+                  <p className="card-subtitle">{t.designation}</p>
+                  {videoSrc ? (
+                    <video controls className="video">
+                      <source src={videoSrc} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : (
+                    <p>No video available</p>
+                  )}
+                </div>
+              );
+            })}
           </div>
           <Link href="/manage-testimonial" className="view-more">
             View All
@@ -112,7 +126,6 @@ export default function HomePage() {
         </section>
 
         {/* Blogs */}
-        
         <section className="section">
           <h2 className="section-title">Recent Blogs</h2>
           <div className="grid">
@@ -128,11 +141,7 @@ export default function HomePage() {
                 <div className="card-body">
                   <p className="card-title">{b.title}</p>
                   <p className="card-subtitle">By {b.author}</p>
-                  <p className="card-desc">
-                    {b.content.length > 80
-                      ? b.content.substring(0, 80) + "..."
-                      : b.content}
-                  </p>
+                  <p className="card-desc">{b.short_summary}</p>
                 </div>
               </div>
             ))}
@@ -141,7 +150,6 @@ export default function HomePage() {
             View All
           </Link>
         </section>
-
       </div>
     </>
   );

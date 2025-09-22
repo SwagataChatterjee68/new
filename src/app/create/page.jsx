@@ -226,7 +226,7 @@ export default function CreateBlog() {
               />
             </div>
             <button type='submit' className='submit-btn'>
-              <FaPaperPlane /> Submit Blog
+              <FaPaperPlane className='inline-block' /> Submit Blog
             </button>
           </form>
         </div>

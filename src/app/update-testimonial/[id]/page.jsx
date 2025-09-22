@@ -227,7 +227,7 @@ export default function UpdateTestimonial() {
           </div>
 
           <button type="submit" className="submit-btn" disabled={isLoading}>
-            <FaPaperPlane /> {isLoading ? "Updating..." : "Update"}
+            <FaPaperPlane className='inline-block' /> {isLoading ? "Updating..." : "Update"}
           </button>
         </form>
       </div>

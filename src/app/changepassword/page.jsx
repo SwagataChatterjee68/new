@@ -2,11 +2,13 @@
 import { useState } from 'react'
 import { toast } from 'sonner'
 import './change-password.css'
-
-export default function ChangePassword () {
+import { useRouter } from 'next/navigation'
+export default function ChangePassword() {
+  const router=useRouter()
   const [formData, setFormData] = useState({
     oldPassword: '',
-    newPassword: ''
+    newPassword: '',
+    confirmPassword: ''
   })
 
   const handleChange = e => {
@@ -17,8 +19,15 @@ export default function ChangePassword () {
   const handleSubmit = async e => {
     e.preventDefault()
 
-    if (!formData.oldPassword || !formData.newPassword) {
+    const { oldPassword, newPassword, confirmPassword } = formData
+
+    if (!oldPassword || !newPassword || !confirmPassword) {
       toast.error('Please fill all fields')
+      return
+    }
+
+    if (newPassword !== confirmPassword) {
+      toast.error('New password and confirm password do not match')
       return
     }
 
@@ -29,24 +38,24 @@ export default function ChangePassword () {
     }
 
     try {
-      const res = await fetch(
-        'https://nortway.mrshakil.com/api/auth/change-password/',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Token ${token}`
-          },
-          body: JSON.stringify({
-            old_password: formData.oldPassword,
-            new_password: formData.newPassword
-          })
-        }
-      )
+      const res = await fetch('https://nortway.mrshakil.com/api/auth/change-password/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`
+        },
+        body: JSON.stringify({
+          old_password: oldPassword,
+          new_password: newPassword,
+          confirm_password: confirmPassword
+        })
+      })
 
       if (res.ok) {
         toast.success('Password changed successfully!')
-        setFormData({ oldPassword: '', newPassword: '' })
+        setFormData({ oldPassword: '', newPassword: '', confirmPassword: '' })
+        router.push("/login")
+        
       } else {
         const errData = await res.json()
         toast.error(errData.detail || 'Failed to change password')
@@ -63,9 +72,7 @@ export default function ChangePassword () {
         <h1 className='text-2xl font-bold mb-6 text-center'>Change Password</h1>
         <form onSubmit={handleSubmit}>
           <div className='form-group'>
-            <label htmlFor='oldPassword' className='form-label'>
-              Old Password
-            </label>
+            <label htmlFor='oldPassword' className='form-label'>Old Password</label>
             <input
               type='password'
               id='oldPassword'
@@ -79,9 +86,7 @@ export default function ChangePassword () {
           </div>
 
           <div className='form-group'>
-            <label htmlFor='newPassword' className='form-label'>
-              New Password
-            </label>
+            <label htmlFor='newPassword' className='form-label'>New Password</label>
             <input
               type='password'
               id='newPassword'
@@ -94,7 +99,21 @@ export default function ChangePassword () {
             />
           </div>
 
-          <button type='submit' className='submit-btn'>
+          <div className='form-group'>
+            <label htmlFor='confirmPassword' className='form-label'>Confirm Password</label>
+            <input
+              type='password'
+              id='confirmPassword'
+              name='confirmPassword'
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className='form-input'
+              placeholder='Confirm new password'
+              required
+            />
+          </div>
+
+          <button type='submit' className='btn'>
             Change Password
           </button>
         </form>

@@ -188,7 +188,7 @@ export default function ManagePhotos() {
             className="input"
           />
           <button onClick={handleUpload} className="submit-btn">
-          <FaPaperPlane/> Upload
+          <FaPaperPlane className='inline-block'/> Upload
           </button>
         </div>
 

@@ -248,7 +248,7 @@ export default function UpdateBlog() {
             </div>
 
             <button type="submit" className="submit-btn">
-              <FaPaperPlane /> Update Blog
+              <FaPaperPlane className='inline-block' /> Update Blog
             </button>
           </form>
         </div>
