@@ -26,7 +26,7 @@
 }
 
 .video-item {
-  @apply relative  shadow-md rounded-md overflow-hidden;
+  @apply relative rounded-md overflow-hidden;
 }
 
 .video-preview {

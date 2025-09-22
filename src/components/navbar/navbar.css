@@ -2,7 +2,7 @@
 
 /* Sidebar wrapper */
 .sidebar {
-  @apply bg-amber-50 text-black shadow-lg p-6;
+  @apply bg-amber-50 text-black  p-6;
 }
 
 /* Logo */
@@ -27,5 +27,5 @@
 
 /* Mobile menu toggle (if needed) */
 .menu-toggle {
-  @apply p-2 bg-white text-indigo-700 rounded-md shadow hover:bg-indigo-100;
+  @apply p-2 bg-white text-indigo-700 rounded-md  hover:bg-indigo-100;
 }

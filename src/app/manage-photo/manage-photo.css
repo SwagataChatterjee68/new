@@ -34,7 +34,7 @@
 
 /* Photo Item */
 .photo-item {
-  @apply relative bg-white shadow-md rounded-md overflow-hidden;
+  @apply relative bg-white rounded-md overflow-hidden;
 }
 
 /* Photo Image */

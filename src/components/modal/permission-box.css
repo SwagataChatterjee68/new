@@ -7,7 +7,7 @@
 
 /* Modal box */
 .modal {
-  @apply bg-white rounded-lg shadow-lg p-6 max-w-md w-full;
+  @apply bg-white rounded-lg p-6 max-w-md w-full;
 }
 
 /* Title */

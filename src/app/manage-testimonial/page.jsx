@@ -10,7 +10,6 @@ import { TiMessages } from 'react-icons/ti'
 export default function ManageTestimonials() {
   const [testimonials, setTestimonials] = useState([])
 
-  // Fetch all testimonials
   useEffect(() => {
     fetch('https://nortway.mrshakil.com/api/testimonial/')
       .then(res => res.json())
@@ -18,7 +17,6 @@ export default function ManageTestimonials() {
       .catch(err => console.error(err))
   }, [])
 
-  // Delete testimonial
   const handleDelete = async id => {
     const token = localStorage.getItem('token')
     if (!token) {
@@ -67,40 +65,35 @@ export default function ManageTestimonials() {
                   </video>
                 )}
 
-                {/* Card body */}
-                <div className='card-body'>
-                  <div className='card-header'>
-                    <img
-                      src={t.profile_image}
-                      alt={t.name}
-                      className='card-profile'
-                    />
-                    <div>
-                      <h2 className='card-title'>{t.name}</h2>
-                      <p className='card-designation'>{t.designation}</p>
-                      {t.region && <p className='card-region'>{t.region}</p>}
-                      {t.star && <p className='card-star'>⭐ {t.star}</p>}
-                    </div>
+                {/* Name, designation, star */}
+                <div className='card-header'>
+                  <img
+                    src={t.profile_image}
+                    alt={t.name}
+                    className='card-profile'
+                  />
+                  <div className='card-info'>
+                    <h2 className='card-title'>{t.name}</h2>
+                    <p className='card-designation'>{t.designation}</p>
                   </div>
+                  {t.star && <p className='card-star'>⭐ {t.star}</p>}
+                </div>
 
-                  {t.comments && <p className='card-comments'>{t.comments}</p>}
-
-                  <div className='card-actions'>
-                    <Link href={`/update-testimonial/${t.id}`}>
-                      <button className='update-btn'>Update</button>
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(t.id)}
-                      className='delete-btn'
-                    >
-                      Delete
-                    </button>
-                  </div>
+                {/* Update & Delete buttons */}
+                <div className='card-actions justify-between'>
+                  <Link href={`/update-testimonial/${t.id}`}>
+                    <button className='update-btn'>Update</button>
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(t.id)}
+                    className='delete-btn'
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             ))}
           </div>
-
         )}
       </div>
     </section>

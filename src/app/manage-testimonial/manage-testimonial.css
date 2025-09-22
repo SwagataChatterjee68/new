@@ -13,48 +13,46 @@
 }
 
 .testimonial-card {
-  @apply bg-gray-50 rounded-lg shadow hover:shadow-md transition-shadow flex flex-col;
+  @apply bg-gray-50 rounded-lg flex flex-col gap-4 overflow-hidden;
 }
 
 /* Video at the top */
 .card-video {
-  @apply w-full rounded-t-lg object-cover h-60;
-}
-
-.card-body {
-  @apply p-4 flex flex-col gap-3;
+  @apply w-full h-60 object-cover;
 }
 
 .card-header {
-  @apply flex items-center gap-4;
+  @apply flex items-center gap-4 justify-between p-3;
 }
 
 .card-profile {
   @apply w-16 h-16 rounded-full object-cover border border-gray-300;
 }
 
+.card-info {
+  @apply flex-1 flex flex-col;
+}
+
 .card-title {
   @apply text-lg font-semibold;
 }
 
-.card-designation,
-.card-region,
-.card-star {
+.card-designation {
   @apply text-gray-600 text-sm;
 }
 
-.card-comments {
-  @apply text-gray-700;
+.card-star {
+  @apply text-yellow-500 font-semibold;
 }
 
 .card-actions {
-  @apply flex justify-end gap-2 mt-4;
+  @apply flex gap-2 p-3;
 }
 
 .update-btn {
-  @apply bg-[#FF9100] cursor-pointer text-white px-3 py-1 rounded hover:bg-orange-400 transition-colors;
+  @apply bg-[#FF9100] text-white px-3 py-1 rounded hover:bg-orange-400 transition-colors;
 }
 
 .delete-btn {
-  @apply bg-red-500 cursor-pointer text-white px-3 py-1 rounded hover:bg-red-600 transition-colors;
+  @apply bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-colors;
 }
