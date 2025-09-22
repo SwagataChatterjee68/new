@@ -54,7 +54,7 @@ export default function ChangePassword() {
       if (res.ok) {
         toast.success('Password changed successfully!')
         setFormData({ oldPassword: '', newPassword: '', confirmPassword: '' })
-        router.push("/login")
+        router.push("/")
         
       } else {
         const errData = await res.json()
