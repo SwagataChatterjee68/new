@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { useParams, useRouter } from "next/navigation"
 import { toast } from "sonner"
 import "./update-testimonial.css"
-import { FaVideo } from "react-icons/fa"
+import { FaRegEdit } from "react-icons/fa"
 import { FaPaperPlane } from "react-icons/fa"
 import Topbar from "@/components/topbar/Topbar"
 
@@ -116,7 +116,7 @@ export default function UpdateTestimonial() {
 
   return (
     <section>
-      <Topbar textTopbar="Update Testimonial" topBarIcon={FaVideo} />
+      <Topbar textTopbar="Update Testimonial" topBarIcon={FaRegEdit} />
 
       <div className="container">
         <h1 className="page-title">Update Testimonial</h1>
