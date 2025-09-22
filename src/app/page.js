@@ -102,7 +102,7 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <Link href="/manage-photos" className="view-more">
+          <Link href="/manage-photo" className="view-more">
             View All
           </Link>
         </section>
@@ -120,7 +120,7 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <Link href="/manage-videos" className="view-more">
+          <Link href="/manage-video" className="view-more">
             View All
           </Link>
         </section>
@@ -146,7 +146,7 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <Link href="/manage-blogs" className="view-more">
+          <Link href="/manage" className="view-more">
             View All
           </Link>
         </section>
