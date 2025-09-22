@@ -11,9 +11,10 @@ import {
   FaRegEdit,
 } from "react-icons/fa";
 import "./navbar.css";
+import { MdDashboardCustomize } from "react-icons/md";
 
 const menuItems = [
-  { name: "Dashboard", icon: FaPlus, href: "/" },
+  { name: "Dashboard", icon: MdDashboardCustomize, href: "/" },
   { name: "Create Blog", icon: FaPlus, href: "/create" },
   { name: "Manage Blog", icon: FaBlog, href: "/manage" },
   { name: "Manage Video Gallery", icon: FaVideo, href: "/manage-video" },

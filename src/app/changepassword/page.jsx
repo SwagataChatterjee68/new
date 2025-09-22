@@ -94,7 +94,7 @@ export default function ChangePassword () {
             />
           </div>
 
-          <button type='submit' className='button-primary'>
+          <button type='submit' className='submit-btn'>
             Change Password
           </button>
         </form>

@@ -5,6 +5,7 @@ import { Toaster, toast } from "sonner";
 import Topbar from "@/components/topbar/Topbar";
 import Link from "next/link";
 import "./globals.css";
+import { MdDashboardCustomize } from "react-icons/md";
 
 export default function HomePage() {
   const [loading, setLoading] = useState(true);
@@ -52,7 +53,7 @@ export default function HomePage() {
   return (
     <>
       <Toaster position="top-center" richColors />
-      <Topbar textTopbar="Home" DashboardIcon={IoHomeOutline} />
+      <Topbar textTopbar="Dashboard" topBarIcon={MdDashboardCustomize} />
 
       <div className="container">
         {/* Testimonials */}
@@ -111,14 +112,28 @@ export default function HomePage() {
         </section>
 
         {/* Blogs */}
+        
         <section className="section">
           <h2 className="section-title">Recent Blogs</h2>
           <div className="grid">
             {blogs.map((b) => (
-              <div key={b.id} className="card">
-                <p className="card-title">{b.title}</p>
-                <p className="card-subtitle">By {b.author}</p>
-                <p className="card-desc">{b.content.substring(0, 80)}...</p>
+              <div key={b.id} className="card blog-card">
+                {b.thumbnail && (
+                  <img
+                    src={b.thumbnail}
+                    alt={b.title}
+                    className="blog-thumbnail"
+                  />
+                )}
+                <div className="card-body">
+                  <p className="card-title">{b.title}</p>
+                  <p className="card-subtitle">By {b.author}</p>
+                  <p className="card-desc">
+                    {b.content.length > 80
+                      ? b.content.substring(0, 80) + "..."
+                      : b.content}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -126,6 +141,7 @@ export default function HomePage() {
             View All
           </Link>
         </section>
+
       </div>
     </>
   );

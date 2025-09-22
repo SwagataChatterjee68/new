@@ -14,8 +14,14 @@ export const AuthProvider = ({ children }) => {
     setIsHydrated(true);
   }, []);
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+  };
+
+
   return (
-    <AuthContext.Provider value={{ token, setToken, isHydrated }}>
+    <AuthContext.Provider value={{ token, setToken, logout, isHydrated }}>
       {children}
     </AuthContext.Provider>
   );

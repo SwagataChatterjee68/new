@@ -1,16 +1,25 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useAuth } from "@/context/AuthContext";
 import "./login.css";
 
 export default function LoginPage() {
   const router = useRouter();
-  // --- CHANGE 1: Switched from 'email' to 'username' state ---
+  const { token, setToken } = useAuth(); // get token from context
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (token) {
+      router.push("/"); // redirect to home if logged in
+    }
+  }, [token, router]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -18,18 +27,21 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/auth/login/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        // --- CHANGE 2: Sending 'username' to the API ---
-        body: JSON.stringify({ username, password }),
-      });
+      const res = await fetch(
+        "https://nortway.mrshakil.com/api/auth/login/",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        }
+      );
       const data = await res.json();
 
       if (res.ok) {
         toast.success(`Welcome back!`);
-        localStorage.setItem("authToken", data.token);
-        router.push("/dashboard");
+        localStorage.setItem("token", data.token); // persist token
+        setToken(data.token); // update context immediately
+        router.push("/"); // redirect to home
       } else {
         setError(data.detail || "Invalid credentials. Please try again.");
       }
@@ -48,7 +60,6 @@ export default function LoginPage() {
         <p className="login-subheading">to get started</p>
 
         <form onSubmit={handleLogin} className="login-form">
-          {/* --- CHANGE 3: Updated the input field for username --- */}
           <div className="form-group-custom">
             <input
               type="text"
@@ -81,7 +92,6 @@ export default function LoginPage() {
             {loading ? "Continuing..." : "Continue"}
           </button>
         </form>
-
       </div>
     </div>
   );

@@ -34,33 +34,19 @@
   @apply w-full border border-gray-300 rounded-lg p-3 text-base text-gray-800 
          transition-colors duration-200 disabled:bg-gray-100;
   
-  @apply focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-400;
+
 }
 
 .login-input::placeholder {
   @apply text-gray-400;
 }
 
-.forgot-password-link {
-  @apply text-sm text-blue-600 hover:underline cursor-pointer text-right mb-5;
-}
 
 .error-message {
   @apply text-red-600 text-sm font-medium text-center mb-4;
 }
 
 .continue-button {
-  @apply w-full bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-md 
-         transition-colors duration-200 hover:bg-blue-700;
-  
-  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
-  @apply disabled:opacity-60 disabled:cursor-not-allowed;
-}
-
-.register-link-text {
-  @apply text-sm text-gray-600 text-center mt-8;
-}
-
-.register-link {
-  @apply text-blue-600 font-semibold hover:underline;
+  @apply w-full bg-[#ff9100] text-white font-semibold py-3 rounded-lg shadow-md 
+         transition-colors duration-200 hover:bg-orange-400 disabled:opacity-60 disabled:cursor-not-allowed;
 }

@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from 'react'
 import { toast } from 'sonner'
 import './manage-photo.css'
 import Topbar from '@/components/topbar/Topbar'
-import { FaPhotoFilm } from 'react-icons/fa6'
+import { FaPhotoFilm,FaPaperPlane } from 'react-icons/fa6'
+import { MdDelete } from "react-icons/md";
 
 export default function ManagePhotos() {
   const [photos, setPhotos] = useState([])
@@ -24,7 +25,7 @@ export default function ManagePhotos() {
   // Fetch existing photos
   useEffect(() => {
     if (!isHydrated) return
-    
+
     const token = localStorage.getItem('token')
     if (!token) {
       toast.error('Unauthorized! Please login first.')
@@ -33,16 +34,24 @@ export default function ManagePhotos() {
 
     fetch(API_BASE, { headers: { Authorization: `Token ${token}` } })
       .then(res => res.json())
-      .then(data =>
+      .then(data => {
+        // Handle different API response shapes
+        const photoArray = Array.isArray(data)
+          ? data
+          : data.results || data.photos || []
+
         setPhotos(
-          data.map(p => ({
+          photoArray.map(p => ({
             ...p,
             photo: p.photo || '/placeholder.jpg',
-            title: p.title || 'Untitled'
+            title: p.title || 'Untitled',
           }))
         )
-      )
-      .catch(err => console.error('Error fetching photos:', err))
+      })
+      .catch(err => {
+        console.error('Error fetching photos:', err)
+        setPhotos([])
+      })
   }, [isHydrated])
 
   // Update previews for newly selected files
@@ -80,12 +89,12 @@ export default function ManagePhotos() {
       for (const file of selectedFiles) {
         const formData = new FormData()
         formData.append('photo', file)
-        formData.append('title', title) // use custom title
+        formData.append('title', title)
 
         const res = await fetch(API_BASE, {
           method: 'POST',
           headers: { Authorization: `Token ${token}` },
-          body: formData
+          body: formData,
         })
 
         if (!res.ok) {
@@ -98,7 +107,7 @@ export default function ManagePhotos() {
         uploadedPhotos.push({
           ...savedPhoto,
           photo: savedPhoto.photo || '/placeholder.jpg',
-          title: savedPhoto.title || title
+          title: savedPhoto.title || title,
         })
       }
 
@@ -124,7 +133,7 @@ export default function ManagePhotos() {
     try {
       const res = await fetch(`${API_BASE}${id}/`, {
         method: 'DELETE',
-        headers: { Authorization: `Token ${token}` }
+        headers: { Authorization: `Token ${token}` },
       })
 
       if (res.ok) {
@@ -140,71 +149,72 @@ export default function ManagePhotos() {
     }
   }
 
-  // Show loading state until hydrated
   if (!isHydrated) {
     return (
-      <div className='flex justify-center items-center min-h-[400px]'>
-        <div className='text-center'>
-          <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4'></div>
-          <p className='text-gray-600'>Loading...</p>
+      <div className="flex justify-center items-center min-h-[400px]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className='min-h-screen bg-gray-50'>
-      <Topbar textTopbar='Manage Photos' topBarIcon={FaPhotoFilm} />
-      <div className='container'>
-        <h1 className='page-title'>Manage Photos</h1>
+    <div className="min-h-screen bg-gray-50">
+      <Topbar textTopbar="Manage Photos" topBarIcon={FaPhotoFilm} />
+      <div className="container">
+        <h1 className="page-title">Manage Photos</h1>
 
         {/* Upload Section */}
-        <div className='input-wrapper'>
-          <label className='form-label'>
+        <div className="input-wrapper">
+          <label className="form-label">
             Photo Title
             <input
-              type='text'
-              placeholder='Enter photo title'
+              type="text"
+              placeholder="Enter photo title"
               value={title}
               onChange={e => setTitle(e.target.value)}
-              className='form-input'
+              className="input"
             />
           </label>
 
           <input
             ref={fileInputRef}
-            type='file'
-            accept='image/*'
+            type="file"
+            accept="image/*"
             multiple
             onChange={handleFileChange}
-            className='file-input'
+            className="input"
           />
-          <button onClick={handleUpload} className='submit-btn'>
-            Upload
+          <button onClick={handleUpload} className="submit-btn">
+          <FaPaperPlane/> Upload
           </button>
         </div>
 
-        {/* Previews for newly selected files */}
+        {/* Previews */}
         {previews.length > 0 && (
-          <div className='photos-grid'>
+          <div className="photos-grid">
             {previews.map((url, idx) => (
-              <div key={idx} className='photo-item'>
+              <div key={idx} className="photo-item">
                 <img
                   src={url}
                   alt={selectedFiles[idx]?.name || 'Preview'}
-                  className='photo-img'
+                  className="photo-img"
                 />
-                <p className='photo-name'>{title || selectedFiles[idx]?.name}</p>
+                <p className="photo-name">
+                  {title || selectedFiles[idx]?.name}
+                </p>
               </div>
             ))}
           </div>
         )}
 
-        {/* Show uploaded photos */}
+        {/* Uploaded Photos */}
         {photos.length > 0 && (
-          <div className='photos-grid'>
+          <div className="photos-grid">
             {photos.map(photo => (
-              <div key={photo.id} className='photo-item'>
+              <div key={photo.id} className="photo-item">
                 <img
                   src={
                     photo.photo?.startsWith('http')
@@ -212,14 +222,14 @@ export default function ManagePhotos() {
                       : `https://nortway.mrshakil.com${photo.photo}`
                   }
                   alt={photo.title}
-                  className='photo-img'
+                  className="photo-img"
                 />
-                <p className='photo-name'>{photo.title}</p>
+                <p className="photo-name">{photo.title}</p>
                 <button
                   onClick={() => handleDelete(photo.id)}
-                  className='photo-delete'
+                  className="photo-delete"
                 >
-                  ❌
+                  <MdDelete className='text-4xl p-1' />
                 </button>
               </div>
             ))}

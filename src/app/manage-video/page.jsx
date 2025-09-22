@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react'
 import { toast } from 'sonner'
 import './manage-video.css'
 import Topbar from '@/components/topbar/Topbar'
-import { FaVideo } from "react-icons/fa6";
+import { FaVideo,FaPaperPlane } from "react-icons/fa6";
+import { MdDelete } from "react-icons/md";
 
 export default function ManageVideos () {
   const [videos, setVideos] = useState([])
@@ -69,7 +70,7 @@ export default function ManageVideos () {
       toast.error('Error deleting video')
     }
   }
-
+  console.log(videos)
   // Show loading state until hydrated
   if (!isHydrated) {
     return (
@@ -97,7 +98,7 @@ export default function ManageVideos () {
               placeholder='Enter video title'
               value={title}
               onChange={e => setTitle(e.target.value)}
-              className='form-input'
+              className='input'
             />
           </label>
 
@@ -108,15 +109,14 @@ export default function ManageVideos () {
               placeholder='https://example.com/video.mp4'
               value={videoUrl}
               onChange={e => setVideoUrl(e.target.value)}
-              className='form-input'
+              className='input'
             />
           </label>
 
           <button onClick={handleUpload} className='submit-btn'>
-            Upload
+            <FaPaperPlane /> Upload
           </button>
         </div>
-
         {/* List */}
         {videos.length > 0 && (
           <div className='videos-grid'>
@@ -132,7 +132,7 @@ export default function ManageVideos () {
                   onClick={() => handleDelete(video.id)}
                   className='video-delete'
                 >
-                  ❌
+                 <MdDelete className='text-4xl p-1' />
                 </button>
               </div>
             ))}

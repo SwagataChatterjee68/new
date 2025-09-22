@@ -2,16 +2,16 @@
 import Link from 'next/link'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
-import './topbar.css'
 import { FaKey } from "react-icons/fa6";
 import { AiOutlineLogout } from "react-icons/ai";
+import { useAuth } from "@/context/AuthContext";
+import './topbar.css'
 
 export default function Topbar({ textTopbar = "Dashboard", topBarIcon: TopBarIcon }) {
   const router = useRouter()
+  const { token, logout } = useAuth()
 
   const handleLogout = async () => {
-    const token = localStorage.getItem('token')
-
     if (!token) {
       toast.error('You are not logged in')
       router.push('/login')
@@ -25,9 +25,10 @@ export default function Topbar({ textTopbar = "Dashboard", topBarIcon: TopBarIco
       })
 
       if (res.ok) {
-        localStorage.removeItem('token')
+        logout() // clear token from context + localStorage
         toast.success('Logged out successfully!')
         router.push('/login')
+        router.refresh() // force UI update
       } else {
         let errData
         try {
@@ -38,8 +39,9 @@ export default function Topbar({ textTopbar = "Dashboard", topBarIcon: TopBarIco
 
         if (res.status === 401 || res.status === 403) {
           toast.error('Invalid or expired token. Please login again.')
-          localStorage.removeItem('token')
+          logout()
           router.push('/login')
+          router.refresh()
         } else {
           toast.error(errData.detail || 'Failed to logout')
         }
@@ -62,10 +64,10 @@ export default function Topbar({ textTopbar = "Dashboard", topBarIcon: TopBarIco
         {/* Right side: Actions */}
         <nav className="flex space-x-4">
           <Link href="/changepassword" className="btn-primary">
-            <FaKey/> Change Password
+            <FaKey /> Change Password
           </Link>
           <button onClick={handleLogout} className="btn-danger">
-            <AiOutlineLogout/> Logout
+            <AiOutlineLogout /> Logout
           </button>
         </nav>
       </div>

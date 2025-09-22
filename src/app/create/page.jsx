@@ -64,7 +64,7 @@ export default function CreateBlog() {
       const res = await fetch('https://nortway.mrshakil.com/api/blogs/blog/', {
         method: 'POST',
         headers: {
-          Authorization: `Token ${token}` // ❌ don’t set Content-Type, browser will do it
+          Authorization: `Token ${token}`
         },
         body: blogFormData
       })

@@ -36,17 +36,13 @@
 }
 
 .form-input {
-  @apply w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2;
+  @apply w-full rounded-lg border border-gray-300 p-3;
 }
 
 .form-textarea {
   @apply h-32 w-full rounded-lg border border-gray-300 p-3 focus:outline-none;
 }
 
-/* Buttons & Feedback Messages */
-.submit-btn {
-  @apply flex cursor-pointer items-center gap-2 rounded bg-gray-200 px-4 py-2 hover:bg-gray-300;
-}
 
 .message-success {
   @apply mt-4 text-center font-medium text-green-600;
@@ -54,5 +50,5 @@
 
 /* Specific Component Overrides */
 #my-tinymce-editor {
-  @apply h-72;
+  @apply h-72 focus:outline-none;
 }

@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import DashboardNavbar from '../navbar/Navbar' // renamed import
-import Login from '../login/Login'
+import LoginPage from '@/app/login/page'
 import './authwrapper.css'
 import { AuthProvider, useAuth } from '@/context/AuthContext'
 
@@ -43,7 +43,7 @@ function AuthContent ({ children }) {
       </div>
     </div>
   ) : (
-    <Login />
+    <LoginPage />
   )
 }
 

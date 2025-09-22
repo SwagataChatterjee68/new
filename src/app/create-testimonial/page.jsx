@@ -4,6 +4,7 @@ import React, { useState, useRef } from 'react';
 import { toast } from 'sonner';
 import { MdCreateNewFolder } from "react-icons/md";
 import "./create-testimonial.css"
+import {FaPaperPlane} from 'react-icons/fa'
 
 export default function CreateTestimonial() {
   const [formData, setFormData] = useState({
@@ -267,7 +268,7 @@ export default function CreateTestimonial() {
             className="submit-btn"
             disabled={isLoading}
           >
-            {isLoading ? "Submitting..." : "Submit"}
+            <FaPaperPlane /> {isLoading ? "Submitting..." : "Submit"}
           </button>
         </form>
 
