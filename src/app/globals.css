@@ -1,11 +1,22 @@
 @import "tailwindcss";
 
-/* Container */
+/* ========== Container & Layout ========== */
 .container {
   @apply max-w-7xl px-4 sm:px-6 lg:px-8 py-8;
 }
+.page-container {
+  @apply flex min-h-screen max-w-7xl flex-col;
+}
+.main-content {
+  @apply flex-grow overflow-y-auto p-10;
+}
 
-/* Section styling */
+/* ========== Page Titles ========== */
+.page-title {
+  @apply text-2xl lg:text-4xl font-bold mb-6 text-gray-800;
+}
+
+/* ========== Sections ========== */
 .section {
   @apply mb-10;
 }
@@ -13,14 +24,23 @@
   @apply text-2xl lg:text-3xl font-bold text-gray-700 mb-4;
 }
 
-/* Grid layout */
+/* ========== Grid Layouts ========== */
 .grid {
   @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
 }
+.card-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+.photos-grid {
+  @apply grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-3;
+}
+.videos-grid {
+  @apply grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-3 flex-wrap;
+}
 
-/* Card styling */
+/* ========== Cards ========== */
 .card {
-  @apply bg-white rounded-xl p-4 border border-gray-100  transition;
+  @apply bg-white rounded-xl p-4 border border-gray-100 transition ;
 }
 .card-title {
   @apply text-lg font-medium text-gray-800;
@@ -31,24 +51,172 @@
 .card-desc {
   @apply text-sm text-gray-600 mt-2 leading-relaxed;
 }
+.testimonial-card {
+  @apply bg-gray-50 rounded-lg flex flex-col gap-4 overflow-hidden;
+}
 
-/* Media styling */
+/* ========== Media Elements ========== */
 .photo {
-  @apply w-full h-48 object-cover overflow-hidden rounded-lg  mt-2 transition-transform duration-200 hover:scale-90;
+  @apply w-full h-48 object-cover overflow-hidden rounded-lg mt-2 transition-transform duration-200 hover:scale-90;
+}
+.photo-img {
+  @apply w-full lg:h-52 h-42 object-cover;
+}
+.photo-preview {
+  @apply mt-2 w-24 h-24 object-cover rounded-md border border-gray-200;
 }
 .video {
   @apply w-full rounded-lg mt-2 object-cover h-60;
 }
-
-/* View more links */
-.view-more {
-  @apply inline-block mt-3 text-[#FF9100] hover:text-orange-300 font-medium;
+.card-video {
+  @apply w-full h-60 object-cover;
+}
+.video-preview {
+  @apply w-full h-52 md:h-60 object-cover;
 }
 
-/* Loading text */
+/* ========== Forms ========== */
+.form-wrapper {
+  @apply flex flex-col gap-6 bg-white pb-10 rounded-lg;
+}
+.form-title {
+  @apply text-3xl lg:text-4xl font-bold text-gray-800 mb-8;
+}
+.form-subtitle {
+  @apply mb-6 text-gray-500;
+}
+.form-row {
+  @apply flex flex-col md:flex-row gap-6;
+}
+.form-group {
+  @apply flex flex-col gap-2 w-full;
+}
+.form-label {
+  @apply flex flex-col text-sm font-medium text-gray-700;
+}
+.form-input {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none;
+}
+textarea.form-input,
+.form-textarea {
+  @apply w-full resize-none px-4 py-3 border border-gray-300 rounded-md min-h-[120px];
+}
+
+/* ✅ Stack labels & inputs */
+.input-wrapper {
+  @apply flex flex-col gap-6 mb-10;
+}
+.input {
+  @apply mt-1 md:w-1/2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none;
+}
+
+.file-input {
+  @apply px-3 py-2 border border-gray-300 rounded-md;
+}
+.file-info {
+  @apply text-sm text-gray-500 mt-2;
+}
+.file-info a {
+  @apply text-[#FF9100] underline hover:text-orange-300;
+}
+
+/* ========== Messages ========== */
+.message {
+  @apply mb-4 text-green-600 font-medium;
+}
+.message-success {
+  @apply mt-4 text-center font-medium text-green-600;
+}
 .loading-text {
   @apply text-center text-gray-500 mt-10;
 }
+.empty-text {
+  @apply text-gray-500 text-center mt-10;
+}
+
+/* ========== Tables ========== */
+.table-wrapper {
+  @apply overflow-x-auto;
+}
+.blogs-table {
+  @apply min-w-full bg-white border-t border-b border-gray-200 border-collapse;
+}
+.blogs-table thead {
+  @apply bg-white;
+}
+.blogs-table th {
+  @apply px-4 py-3 text-left text-sm font-semibold text-gray-700;
+}
+.blogs-table td {
+  @apply px-4 py-2 text-sm;
+}
+.blogs-table tbody tr:hover {
+  @apply bg-gray-50;
+}
+
+/* ========== Buttons ========== */
 .submit-btn {
-  @apply  inline-block cursor-pointer items-center gap-2 rounded bg-[#FF9100] lg:w-1/6 md:w-1/6 text-center px-4 py-2 hover:bg-orange-400 text-white;
+  @apply inline-block cursor-pointer items-center gap-2 rounded bg-[#FF9100] lg:w-1/6 md:w-1/6 text-center px-4 py-2 hover:bg-orange-400 text-white;
+}
+.view-more {
+  @apply inline-block mt-3 bg-[#FF9100] p-2 rounded text-white hover:bg-orange-300 font-medium;
+}
+.btn-update,
+.update-btn {
+  @apply flex items-center gap-1 text-white bg-[#ff9100] px-3 py-1 rounded text-sm cursor-pointer transition-colors duration-200 hover:bg-orange-400;
+}
+.btn-delete,
+.delete-btn {
+  @apply flex items-center gap-1 text-white bg-red-500 px-3 py-1 rounded text-sm cursor-pointer transition-colors duration-200 hover:bg-red-600;
+}
+
+/* ✅ Blog table actions - side by side */
+.actions {
+  @apply flex gap-2;
+}
+
+/* ========== Testimonials ========== */
+.card-header {
+  @apply flex items-center gap-4 justify-between p-3 h-20;
+}
+.card-profile {
+  @apply w-16 h-16 rounded-full object-cover border border-gray-300;
+}
+.card-info {
+  @apply flex-1 flex flex-col;
+}
+.card-designation {
+  @apply text-gray-600 text-sm;
+}
+.card-star {
+  @apply text-yellow-500 font-semibold;
+}
+.card-actions {
+  @apply flex gap-2 p-3;
+}
+
+
+/* ========== Photos & Videos Items ========== */
+.photo-item {
+  @apply relative bg-white rounded-md overflow-hidden;
+}
+.photo-name {
+  @apply text-sm text-center py-1;
+}
+.photo-delete {
+  @apply absolute top-1 right-1 bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs cursor-pointer hover:bg-red-600;
+}
+.video-item {
+  @apply relative rounded-md overflow-hidden;
+}
+.video-name {
+  @apply text-sm text-center py-1;
+}
+.video-delete {
+  @apply absolute top-1 right-1 bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs cursor-pointer hover:bg-red-600;
+}
+
+/* ========== Rich Text Editor ========== */
+#my-tinymce-editor {
+  @apply h-72 focus:outline-none;
 }

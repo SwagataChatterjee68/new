@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react"
 import { useParams, useRouter } from "next/navigation"
 import { toast } from "sonner"
-import "./update-testimonial.css"
 import { FaRegEdit } from "react-icons/fa"
 import { FaPaperPlane } from "react-icons/fa"
 import Topbar from "@/components/topbar/Topbar"

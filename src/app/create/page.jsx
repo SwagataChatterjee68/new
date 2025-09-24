@@ -5,8 +5,8 @@ import { Editor } from '@tinymce/tinymce-react'
 import { toast } from 'sonner'
 import '../globals.css'
 import PermissionBox from '@/components/modal/Permission'
-import './create.css'
 import Topbar from '@/components/topbar/Topbar'
+
 
 export default function CreateBlog() {
   const [formData, setFormData] = useState({

@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { toast } from 'sonner'
-import './manage-photo.css'
 import Topbar from '@/components/topbar/Topbar'
 import { FaPhotoFilm, FaPaperPlane } from 'react-icons/fa6'
 import { MdDelete } from "react-icons/md";

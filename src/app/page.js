@@ -58,7 +58,13 @@ export default function HomePage() {
         {/* Testimonials */}
         {/* Testimonials */}
         <section className="section">
-          <h2 className="section-title">Latest Testimonials</h2>
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="section-title">Latest Testimonials</h2>
+            <Link href="/manage-testimonial" className="view-more">
+              View All
+            </Link>
+          </div>
+
           <div className="grid">
             {testimonials.map((t) => {
               // Determine the correct video URL
@@ -86,14 +92,17 @@ export default function HomePage() {
               );
             })}
           </div>
-          <Link href="/manage-testimonial" className="view-more">
-            View All
-          </Link>
+
         </section>
 
         {/* Photos */}
         <section className="section">
-          <h2 className="section-title">Recent Photos</h2>
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="section-title">Recent Photos</h2>
+            <Link href="/manage-photo" className="view-more">
+            View All
+          </Link>
+          </div>
           <div className="grid">
             {photos.map((p) => (
               <div key={p.id} className="card">
@@ -102,14 +111,19 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <Link href="/manage-photo" className="view-more">
-            View All
-          </Link>
+          
         </section>
 
         {/* Videos */}
         <section className="section">
-          <h2 className="section-title">Recent Videos</h2>
+
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="section-title">Recent Videos</h2>
+             <Link href="/manage-video" className="view-more">
+            View All
+          </Link>
+          </div>
+          
           <div className="grid">
             {videos.map((v) => (
               <div key={v.id} className="card">
@@ -120,14 +134,19 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <Link href="/manage-video" className="view-more">
-            View All
-          </Link>
+         
         </section>
 
         {/* Blogs */}
         <section className="section">
-          <h2 className="section-title">Recent Blogs</h2>
+
+           <div className="flex justify-between items-center mb-2">
+            <h2 className="section-title">Recent Blogs</h2>
+             <Link href="/manage" className="view-more">
+            View All
+          </Link>
+          </div>
+         
           <div className="grid">
             {blogs.map((b) => (
               <div key={b.id} className="card blog-card">
@@ -146,9 +165,7 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <Link href="/manage" className="view-more">
-            View All
-          </Link>
+          
         </section>
       </div>
     </>

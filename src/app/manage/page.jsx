@@ -1,7 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { FaEdit, FaTrash } from 'react-icons/fa'
-import './manage-blog.css'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import PermissionBox from '@/components/modal/Permission'

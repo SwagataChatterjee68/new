@@ -3,8 +3,10 @@ import { useState } from 'react'
 import { toast } from 'sonner'
 import './change-password.css'
 import { useRouter } from 'next/navigation'
+import Topbar from '@/components/topbar/Topbar'
+import { FaKey } from "react-icons/fa6";
 export default function ChangePassword() {
-  const router=useRouter()
+  const router = useRouter()
   const [formData, setFormData] = useState({
     oldPassword: '',
     newPassword: '',
@@ -55,7 +57,7 @@ export default function ChangePassword() {
         toast.success('Password changed successfully!')
         setFormData({ oldPassword: '', newPassword: '', confirmPassword: '' })
         router.push("/")
-        
+
       } else {
         const errData = await res.json()
         toast.error(errData.detail || 'Failed to change password')
@@ -67,56 +69,60 @@ export default function ChangePassword() {
   }
 
   return (
-    <div className='page-container'>
-      <div className='card'>
-        <h1 className='text-2xl font-bold mb-6 text-center'>Change Password</h1>
-        <form onSubmit={handleSubmit}>
-          <div className='form-group'>
-            <label htmlFor='oldPassword' className='form-label'>Old Password</label>
-            <input
-              type='password'
-              id='oldPassword'
-              name='oldPassword'
-              value={formData.oldPassword}
-              onChange={handleChange}
-              className='form-input'
-              placeholder='Enter old password'
-              required
-            />
-          </div>
+    <div>
+      <Topbar textTopbar='Change Password' topBarIcon={FaKey} />
+      <div className='page-container'>
 
-          <div className='form-group'>
-            <label htmlFor='newPassword' className='form-label'>New Password</label>
-            <input
-              type='password'
-              id='newPassword'
-              name='newPassword'
-              value={formData.newPassword}
-              onChange={handleChange}
-              className='form-input'
-              placeholder='Enter new password'
-              required
-            />
-          </div>
+        <div className='card'>
+          <h1 className='text-2xl font-bold mb-6 text-center'>Change Password</h1>
+          <form onSubmit={handleSubmit}>
+            <div className='form-group'>
+              <label htmlFor='oldPassword' className='form-label'>Old Password</label>
+              <input
+                type='password'
+                id='oldPassword'
+                name='oldPassword'
+                value={formData.oldPassword}
+                onChange={handleChange}
+                className='form-input'
+                placeholder='Enter old password'
+                required
+              />
+            </div>
 
-          <div className='form-group'>
-            <label htmlFor='confirmPassword' className='form-label'>Confirm Password</label>
-            <input
-              type='password'
-              id='confirmPassword'
-              name='confirmPassword'
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className='form-input'
-              placeholder='Confirm new password'
-              required
-            />
-          </div>
+            <div className='form-group'>
+              <label htmlFor='newPassword' className='form-label'>New Password</label>
+              <input
+                type='password'
+                id='newPassword'
+                name='newPassword'
+                value={formData.newPassword}
+                onChange={handleChange}
+                className='form-input'
+                placeholder='Enter new password'
+                required
+              />
+            </div>
 
-          <button type='submit' className='btn'>
-            Change Password
-          </button>
-        </form>
+            <div className='form-group'>
+              <label htmlFor='confirmPassword' className='form-label'>Confirm Password</label>
+              <input
+                type='password'
+                id='confirmPassword'
+                name='confirmPassword'
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                className='form-input'
+                placeholder='Confirm new password'
+                required
+              />
+            </div>
+
+            <button type='submit' className='btn'>
+              Change Password
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   )

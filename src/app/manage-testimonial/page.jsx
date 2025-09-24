@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { toast } from 'sonner'
-import './manage-testimonial.css'
 import Topbar from '@/components/topbar/Topbar'
 import { TiMessages } from 'react-icons/ti'
 

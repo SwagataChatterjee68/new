@@ -2,16 +2,18 @@
 import Link from 'next/link'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
-import { FaKey } from "react-icons/fa6";
+import { FaKey,FaBars } from "react-icons/fa6";
 import { AiOutlineLogout } from "react-icons/ai";
 import { useAuth } from "@/context/AuthContext";
+import DashboardNavbar from '../navbar/Navbar';
+import { useState } from "react";
 import './topbar.css'
 
 export default function Topbar({ textTopbar = "Dashboard", topBarIcon: TopBarIcon }) {
   const router = useRouter()
   const { token, logout } = useAuth()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // The handleLogout function remains unchanged
   const handleLogout = async () => {
     if (!token) {
       toast.error('You are not logged in')
@@ -32,12 +34,7 @@ export default function Topbar({ textTopbar = "Dashboard", topBarIcon: TopBarIco
         router.refresh()
       } else {
         let errData
-        try {
-          errData = await res.json()
-        } catch {
-          errData = { detail: 'Server returned an error' }
-        }
-
+        try { errData = await res.json() } catch { errData = { detail: 'Server returned an error' } }
         if (res.status === 401 || res.status === 403) {
           toast.error('Invalid or expired token. Please login again.')
           logout()
@@ -54,34 +51,43 @@ export default function Topbar({ textTopbar = "Dashboard", topBarIcon: TopBarIco
   }
 
   return (
-    <header className="p-4 bg-amber-50 z-40 text-gray-900 shadow-sm">
-      <div className="flex justify-between items-center">
+    <>
+      <header className="p-4 bg-amber-50 z-40 text-gray-900 shadow-sm flex justify-between items-center">
         {/* Left side: Icon + Title */}
         <div className="flex items-center space-x-2">
           {TopBarIcon && <TopBarIcon className="w-6 h-6 text-[#FF9100]" />}
           <h3 className="font-semibold truncate">{textTopbar}</h3>
         </div>
 
-        {/* Right side: Actions (Now Responsive) */}
-        <nav className="flex items-center space-x-2 sm:space-x-4">
-          <Link 
-            href="/changepassword" 
-            className="btn-primary"
-            aria-label="Change Password"
-          >
+        {/* Desktop actions */}
+        <nav className="hidden sm:flex items-center space-x-4">
+          <Link href="/changepassword" className="btn-primary">
             <FaKey className="flex-shrink-0" />
-            <span className="hidden sm:inline">Change Password</span>
+            <span>Change Password</span>
           </Link>
-          <button 
-            onClick={handleLogout} 
-            className="btn-danger"
-            aria-label="Logout"
-          >
+          <button onClick={handleLogout} className="btn-danger">
             <AiOutlineLogout className="flex-shrink-0" />
-            <span className="hidden sm:inline">Logout</span>
+            <span>Logout</span>
           </button>
         </nav>
-      </div>
-    </header>
+
+        {/* Mobile hamburger */}
+        <button
+          className="sm:hidden p-2 rounded-lg bg-white shadow"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <AiOutlineLogout /> : <FaBars />}
+        </button>
+      </header>
+
+      {/* Mobile sidebar */}
+      {mobileMenuOpen && (
+        <DashboardNavbar
+          open={mobileMenuOpen}
+          setOpen={setMobileMenuOpen}
+          handleLogout={handleLogout}
+        />
+      )}
+    </>
   )
 }

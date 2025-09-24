@@ -5,7 +5,6 @@ import { FaBlog, FaPaperPlane } from "react-icons/fa";
 import { Editor } from "@tinymce/tinymce-react";
 import { toast } from "sonner";
 import PermissionBox from "@/components/modal/Permission";
-import "./update.css"; // Make sure you have this CSS file for styling
 import Topbar from "@/components/topbar/Topbar";
 
 export default function UpdateBlog() {
