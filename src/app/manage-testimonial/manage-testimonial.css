@@ -22,7 +22,7 @@
 }
 
 .card-header {
-  @apply flex items-center gap-4 justify-between p-3;
+  @apply flex items-center gap-4 justify-between p-3 h-20;
 }
 
 .card-profile {

@@ -32,7 +32,7 @@ export default function DashboardNavbar() {
   return (
     <>
       {/* HAMBURGER MENU ICON - Shows only on mobile */}
-      <div className="md:hidden fixed top-4 left-4 z-50">
+      <div className=" fixed top-20 left-82 z-50">
         <button
           onClick={() => setIsOpen(true)}
           className="menu-toggle"
