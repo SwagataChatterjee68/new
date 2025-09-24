@@ -79,7 +79,7 @@ export default function ManageTestimonials() {
                 </div>
 
                 {/* Update & Delete buttons */}
-                <div className='card-actions justify-between'>
+                <div className='card-actions'>
                   <Link href={`/update-testimonial/${t.id}`}>
                     <button className='update-btn'>Update</button>
                   </Link>

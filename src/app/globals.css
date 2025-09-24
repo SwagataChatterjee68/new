@@ -153,7 +153,6 @@ textarea.form-input,
 .blogs-table tbody tr:hover {
   @apply bg-gray-50;
 }
-
 /* ========== Buttons ========== */
 .submit-btn {
   @apply inline-block cursor-pointer items-center gap-2 rounded bg-[#FF9100] lg:w-1/6 md:w-1/6 text-center px-4 py-2 hover:bg-orange-400 text-white;
@@ -169,12 +168,10 @@ textarea.form-input,
 .delete-btn {
   @apply flex items-center gap-1 text-white bg-red-500 px-3 py-1 rounded text-sm cursor-pointer transition-colors duration-200 hover:bg-red-600;
 }
-
 /* ✅ Blog table actions - side by side */
 .actions {
   @apply flex gap-2;
 }
-
 /* ========== Testimonials ========== */
 .card-header {
   @apply flex items-center gap-4 justify-between p-3 h-20;
@@ -194,8 +191,6 @@ textarea.form-input,
 .card-actions {
   @apply flex gap-2 p-3;
 }
-
-
 /* ========== Photos & Videos Items ========== */
 .photo-item {
   @apply relative bg-white rounded-md overflow-hidden;
