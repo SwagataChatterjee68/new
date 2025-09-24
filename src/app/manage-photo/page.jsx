@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { toast } from 'sonner'
 import './manage-photo.css'
 import Topbar from '@/components/topbar/Topbar'
-import { FaPhotoFilm,FaPaperPlane } from 'react-icons/fa6'
+import { FaPhotoFilm, FaPaperPlane } from 'react-icons/fa6'
 import { MdDelete } from "react-icons/md";
 
 export default function ManagePhotos() {
@@ -178,17 +178,19 @@ export default function ManagePhotos() {
               className="input"
             />
           </label>
-
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            multiple
-            onChange={handleFileChange}
-            className="input"
-          />
+          <label className='form-label'>
+            Image
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleFileChange}
+              className="input"
+            />
+          </label>
           <button onClick={handleUpload} className="submit-btn">
-          <FaPaperPlane className='inline-block'/> Upload
+            <FaPaperPlane className='inline-block' /> Upload
           </button>
         </div>
 

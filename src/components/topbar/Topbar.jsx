@@ -11,6 +11,7 @@ export default function Topbar({ textTopbar = "Dashboard", topBarIcon: TopBarIco
   const router = useRouter()
   const { token, logout } = useAuth()
 
+  // The handleLogout function remains unchanged
   const handleLogout = async () => {
     if (!token) {
       toast.error('You are not logged in')
@@ -25,10 +26,10 @@ export default function Topbar({ textTopbar = "Dashboard", topBarIcon: TopBarIco
       })
 
       if (res.ok) {
-        logout() // clear token from context + localStorage
+        logout()
         toast.success('Logged out successfully!')
         router.push('/login')
-        router.refresh() // force UI update
+        router.refresh()
       } else {
         let errData
         try {
@@ -53,21 +54,31 @@ export default function Topbar({ textTopbar = "Dashboard", topBarIcon: TopBarIco
   }
 
   return (
-    <header className="p-4 bg-amber-50 z-40 text-gray-900">
+    <header className="p-4 bg-amber-50 z-40 text-gray-900 shadow-sm">
       <div className="flex justify-between items-center">
         {/* Left side: Icon + Title */}
         <div className="flex items-center space-x-2">
           {TopBarIcon && <TopBarIcon className="w-6 h-6 text-[#FF9100]" />}
-          <h3 className="font-semibold">{textTopbar}</h3>
+          <h3 className="font-semibold truncate">{textTopbar}</h3>
         </div>
 
-        {/* Right side: Actions */}
-        <nav className="flex space-x-4">
-          <Link href="/changepassword" className="btn-primary">
-            <FaKey /> Change Password
+        {/* Right side: Actions (Now Responsive) */}
+        <nav className="flex items-center space-x-2 sm:space-x-4">
+          <Link 
+            href="/changepassword" 
+            className="btn-primary"
+            aria-label="Change Password"
+          >
+            <FaKey className="flex-shrink-0" />
+            <span className="hidden sm:inline">Change Password</span>
           </Link>
-          <button onClick={handleLogout} className="btn-danger">
-            <AiOutlineLogout /> Logout
+          <button 
+            onClick={handleLogout} 
+            className="btn-danger"
+            aria-label="Logout"
+          >
+            <AiOutlineLogout className="flex-shrink-0" />
+            <span className="hidden sm:inline">Logout</span>
           </button>
         </nav>
       </div>

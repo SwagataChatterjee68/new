@@ -2,7 +2,7 @@
 
 /* Sidebar wrapper */
 .sidebar {
-  @apply bg-amber-50 text-black  p-6;
+  @apply bg-amber-50 text-black p-6;
 }
 
 /* Logo */
@@ -25,7 +25,7 @@
   @apply w-5 h-5 flex-shrink-0;
 }
 
-/* Mobile menu toggle (if needed) */
+/* Mobile menu toggle (Hamburger button) */
 .menu-toggle {
-  @apply p-2 bg-white text-indigo-700 rounded-md  hover:bg-indigo-100;
+  @apply p-2 bg-amber-50 rounded-md shadow-lg hover:bg-amber-100;
 }

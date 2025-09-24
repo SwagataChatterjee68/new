@@ -2,7 +2,7 @@
 
 /* Page Title */
 .page-title {
-  @apply text-4xl font-bold mb-6 text-gray-800;
+  @apply lg:text-4xl text-2xl font-bold mb-6 text-gray-800;
 }
 
 /* Page Container */
@@ -23,9 +23,7 @@
 .file-input {
   @apply w-1/2 px-3 py-2 border border-gray-300 rounded-md;
 }
-.input {
-  @apply mt-1 w-1/2 px-3 py-2 border border-gray-300 rounded-md;
-}
+
 /* Photos Grid */
 .photos-grid {
   @apply grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-3;
@@ -39,7 +37,7 @@
 
 /* Photo Image */
 .photo-img {
-  @apply w-full h-52 object-cover;
+  @apply w-full lg:h-52 h-42 object-cover;
 }
 
 /* Photo Name */
